@@ -8,6 +8,10 @@
 
     yarn start ou npm run start
 
+## Executar via Docker
+
+    docker-compose up -d
+
 ## Serviço Client (porta: 3333):
 
 Serviço para gerenciar usuários desde o seu cadastro até update de senha e criação de token de autenticação.
