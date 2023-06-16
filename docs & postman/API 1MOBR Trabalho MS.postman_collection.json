@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "bc42d292-4520-4eef-a412-04200de1511a",
+		"name": "API 1MOBR Trabalho MS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client Service",
+			"item": [
+				{
+					"name": "Authorize user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"vinicius_furuka@hotmail.com.br\",\n    \"senha\": \"vinicius1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-client}}/auth",
+							"host": [
+								"{{host-client}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeusuario\": \"vinicius\",\n    \"email\": \"vinicius_furuka@hotmail.com.br\",\n    \"senha\": \"vinicius1234\",\n    \"nomecompleto\": \"Vinícius Furukawa Carvalho\",\n    \"telefone\": \"(13)99790-6387\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-client}}/client",
+							"host": [
+								"{{host-client}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host-client}}/client",
+							"host": [
+								"{{host-client}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"senhaatual\": \"vinicius1234\",\n    \"senhanova\": \"vinicius12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-client}}/client",
+							"host": [
+								"{{host-client}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account Service",
+			"item": [
+				{
+					"name": "Retrieve all accounts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host-account}}/account",
+							"host": [
+								"{{host-account}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome_banco\": \"Nubank\",\n    \"tipo_conta\": \"Conta Corrente\",\n    \"nome_titular\": \"Vinícius Furukawa Carvalho\",\n    \"limite_cartao\": 20000.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-account}}/account",
+							"host": [
+								"{{host-account}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome_banco\": \"C6\",\n    \"tipo_conta\": \"Conta Poupança\",\n    \"nome_titular\": \"Vinícius F. Carvalho\",\n    \"limite_cartao\": 10000.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-account}}/account/:id",
+							"host": [
+								"{{host-account}}"
+							],
+							"path": [
+								"account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "648bb1d65c40c34015361662"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
