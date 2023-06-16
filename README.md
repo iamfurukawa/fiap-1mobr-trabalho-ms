@@ -14,6 +14,8 @@ Serviço para gerenciar usuários desde o seu cadastro até update de senha e cr
 
 ### Para retornar todos os clientes.
 
+Por ser um endpoint para testes ele precisa ter token Bearer de authenticação.
+
 `GET /client`
 
 ### Para cadastrar novo cliente.
@@ -39,7 +41,7 @@ Serviço para gerenciar usuários desde o seu cadastro até update de senha e cr
 
 ### Para atualizar a senha do usuário.
 
-As senhas nova e atual devem ser diferentes e a senha atual deve ser igual a cadastrada.
+As senhas nova e atual devem ser diferentes e a senha atual deve ser igual a cadastrada. E para utilizar é preciso estar autenticado com token Bearer.
 
 `PATCH /clientes`
 
